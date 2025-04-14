@@ -1,0 +1,11 @@
+# Ensure all text files use LF line endings in the repository
+* text=auto
+
+# Force Python files to use LF
+*.py text eol=lf
+
+# Force shell scripts to use LF
+*.sh text eol=lf
+
+# Force batch files to use CRLF (Windows style)
+*.bat text eol=crlf 
