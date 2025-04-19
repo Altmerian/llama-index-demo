@@ -2,29 +2,6 @@
 
 A collection of examples demonstrating the use of llama_index.
 
-## Structure
-
-```
-llama-demo/
-├── pyproject.toml         # Project configuration
-├── README.md              # Project documentation
-├── LICENSE                # License file
-├── .gitignore             # Git ignore file
-├── data/                  # Data directory with example documents
-├── src/                   # Source directory
-│   └── llama_demo/        # Main package
-│       ├── __init__.py    # Package initialization
-│       ├── cli.py         # Command-line interface
-│       └── examples/      # Examples subpackage
-│           ├── __init__.py
-│           └── simple_query.py
-├── tests/                 # Test directory
-│   ├── __init__.py
-│   └── test_simple_query.py
-└── docs/                  # Documentation
-    └── index.md
-```
-
 ## Installation
 
 ### Using UV (Recommended)
@@ -56,13 +33,13 @@ pip install -e .
 Run a simple query example:
 
 ```bash
-llama-demo simple-query
+python -m llama_demo.cli simple-query
 ```
 
 Or customize the query:
 
 ```bash
-llama-demo simple-query --query "your custom query" --data-dir "your/data/directory"
+python -m llama_demo.cli simple-query --query "your custom query" --data-dir "your/data/directory"
 ```
 
 ## Development
@@ -95,4 +72,4 @@ To add new examples:
 1. Create a new module in `src/llama_demo/examples/`
 2. Add the example to the CLI in `src/llama_demo/cli.py`
 3. Create tests in `tests/`
-4. Document the example in `docs/`
+4. Document the example in `docs/` 
