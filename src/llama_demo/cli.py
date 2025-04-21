@@ -22,15 +22,13 @@ def main():
         default=None,
         help=f"Directory containing documents (default: {get_default_data_dir()})",
     )
-    simple_parser.add_argument(
-        "--query", default="find the proverb", help="Query to run"
-    )
+    simple_parser.add_argument("--query", help="Query to run", required=True)
 
     # Parse arguments and run the appropriate command
     args = parser.parse_args()
 
     if args.command == "simple-query":
-        response = run_simple_query(args.data_dir, args.query)
+        response = run_simple_query(args.query, args.data_dir)
         print(response)
     elif not args.command:
         parser.print_help()

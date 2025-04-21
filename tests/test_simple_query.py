@@ -5,7 +5,8 @@ Tests for simple_query module
 import unittest
 from unittest.mock import MagicMock, patch
 
-from llama_demo.examples.simple_query import get_default_data_dir, run_simple_query
+from llama_demo.examples.simple_query import run_simple_query
+from llama_demo.utils import get_default_data_dir
 
 
 class TestSimpleQuery(unittest.TestCase):
@@ -36,7 +37,7 @@ class TestSimpleQuery(unittest.TestCase):
         mock_engine.query.return_value = mock_response
 
         # Call the function with explicit data_dir
-        result = run_simple_query("test_data", "test query")
+        result = run_simple_query("test query", "test_data")
 
         # Assertions
         mock_reader.assert_called_once_with("test_data")
@@ -67,7 +68,7 @@ class TestSimpleQuery(unittest.TestCase):
         mock_engine.query.return_value = mock_response
 
         # Call the function with default data_dir
-        result = run_simple_query(None, "test query")
+        result = run_simple_query("test query")
 
         # Assertions
         mock_get_default.assert_called_once()
@@ -76,6 +77,13 @@ class TestSimpleQuery(unittest.TestCase):
         mock_index.as_query_engine.assert_called_once()
         mock_engine.query.assert_called_once_with("test query")
         self.assertEqual(result, mock_response)
+
+    def test_run_simple_query_empty_query(self):
+        """Test that an empty or whitespace query raises ValueError."""
+        with self.assertRaises(ValueError):
+            run_simple_query(query_text="")
+        with self.assertRaises(ValueError):
+            run_simple_query(query_text="   ")
 
 
 if __name__ == "__main__":
