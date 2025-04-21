@@ -40,7 +40,9 @@ class TestSimpleQuery(unittest.TestCase):
         result = run_simple_query("test query", "test_data")
 
         # Assertions
-        mock_reader.assert_called_once_with("test_data")
+        mock_reader.assert_called_once_with(
+            "test_data", exclude=["paul_graham_essay.txt"]
+        )
         mock_vector_index.from_documents.assert_called_once_with(mock_docs)
         mock_index.as_query_engine.assert_called_once()
         mock_engine.query.assert_called_once_with("test query")
@@ -72,7 +74,9 @@ class TestSimpleQuery(unittest.TestCase):
 
         # Assertions
         mock_get_default.assert_called_once()
-        mock_reader.assert_called_once_with("default_data_dir")
+        mock_reader.assert_called_once_with(
+            "default_data_dir", exclude=["paul_graham_essay.txt"]
+        )
         mock_vector_index.from_documents.assert_called_once_with(mock_docs)
         mock_index.as_query_engine.assert_called_once()
         mock_engine.query.assert_called_once_with("test query")

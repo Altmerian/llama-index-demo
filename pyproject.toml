@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools >= 77.0.3"]
+requires = ["setuptools >= 79.0.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -11,6 +11,7 @@ readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
     "llama-index>=0.12.31",
+    "llama-index-utils-workflow>=0.3.1",
 ]
 
 [project.scripts]
@@ -18,10 +19,9 @@ llama-demo = "llama_demo.cli:main"
 
 [project.optional-dependencies]
 dev = [
-    "pytest>=6.0",
-    "pytest-cov>=2.12",
-    "black>=22.1",
-    "isort>=5.10",
+    "pytest>=8.3.5",
+    "pytest-cov>=6.1.1",
+    "pytest-asyncio",
 ]
 
 [tool.setuptools]

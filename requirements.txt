@@ -1,1 +1,2 @@
 llama-index>=0.12.31
+llama-index-utils-workflow>=0.3.1

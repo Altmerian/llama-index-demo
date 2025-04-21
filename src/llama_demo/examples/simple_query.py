@@ -35,7 +35,9 @@ def run_simple_query(
 
     # SimpleDirectoryReader accepts Path objects, but let's ensure it's a string
     # if compatibility is uncertain or for consistency.
-    documents = SimpleDirectoryReader(str(data_dir)).load_data()
+    documents = SimpleDirectoryReader(
+        str(data_dir), exclude=["paul_graham_essay.txt"]
+    ).load_data()
     index = VectorStoreIndex.from_documents(documents)
     query_engine = index.as_query_engine()
     return query_engine.query(query_text)
